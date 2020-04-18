@@ -3,7 +3,7 @@
     /// <summary>
     /// Available options for IdentityServer operational store configuration.
     /// </summary>
-    public class OperationalStoreOptions : StoreOptionsBase
+    public class PersistedGrantStoreOptions : StoreOptionsBase
     {
         /// <summary>
         /// Gets or sets the persisted grants table configuration.

@@ -8,9 +8,9 @@ namespace IdentityServer4.NHibernate.Mappings.Stores
 {
     internal class OperationalStoreModelMapper : ModelMapperBase
     {
-        private readonly OperationalStoreOptions _options;
+        private readonly PersistedGrantStoreOptions _options;
 
-        public OperationalStoreModelMapper(OperationalStoreOptions options)
+        public OperationalStoreModelMapper(PersistedGrantStoreOptions options)
         {
             _options = options ?? throw new ArgumentNullException(nameof(options));
             BeforeMapClass += BeforeMapOperationalStoreClass;
