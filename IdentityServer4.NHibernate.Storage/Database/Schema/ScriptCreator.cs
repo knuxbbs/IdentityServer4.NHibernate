@@ -18,7 +18,7 @@ namespace IdentityServer4.NHibernate.Database.Schema
         /// <param name="scriptFileName">Output file name</param>
         /// <param name="configuration">NHibernate Configuration object that represents the database configuration to script.</param>
         /// <param name="configurationStoreOptions">Options for configuration store.</param>
-        /// <param name="persistedGrantStoreOptions">Options for operational store.</param>
+        /// <param name="operationalStoreOptions">Options for operational store.</param>
         /// <remarks>
         /// Configuration store options and operational store options are needed to detect the schema for each database object.
         /// </remarks>
@@ -26,20 +26,20 @@ namespace IdentityServer4.NHibernate.Database.Schema
             string scriptFileName,
             Configuration configuration, 
             ConfigurationStoreOptions configurationStoreOptions, 
-            PersistedGrantStoreOptions persistedGrantStoreOptions)
+            OperationalStoreOptions operationalStoreOptions)
         {
             if (configurationStoreOptions == null)
             {
                 throw new ArgumentNullException(nameof(configurationStoreOptions));
             }
 
-            if (persistedGrantStoreOptions == null)
+            if (operationalStoreOptions == null)
             {
-                throw new ArgumentNullException(nameof(persistedGrantStoreOptions));
+                throw new ArgumentNullException(nameof(operationalStoreOptions));
             }
 
             configuration.AddConfigurationStoreMappings(configurationStoreOptions);
-            configuration.AddOperationalStoreMappings(persistedGrantStoreOptions);
+            configuration.AddOperationalStoreMappings(operationalStoreOptions);
 
             new SchemaExport(configuration)
                 .SetOutputFile(scriptFileName)

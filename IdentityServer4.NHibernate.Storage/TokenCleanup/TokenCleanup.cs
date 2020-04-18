@@ -17,7 +17,7 @@ namespace IdentityServer4.NHibernate.TokenCleanup
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly ILogger<TokenCleanup> _logger;
-        private readonly PersistedGrantStoreOptions _options;
+        private readonly OperationalStoreOptions _options;
 
         private CancellationTokenSource _source;
 
@@ -27,7 +27,7 @@ namespace IdentityServer4.NHibernate.TokenCleanup
         /// <param name="serviceProvider">The service provider.</param>
         /// <param name="logger">The logger.</param>
         /// <param name="options">Configuration options.</param>
-        public TokenCleanup(IServiceProvider serviceProvider, ILogger<TokenCleanup> logger, PersistedGrantStoreOptions options)
+        public TokenCleanup(IServiceProvider serviceProvider, ILogger<TokenCleanup> logger, OperationalStoreOptions options)
         {
             _options = options ?? throw new ArgumentNullException(nameof(options));
 
