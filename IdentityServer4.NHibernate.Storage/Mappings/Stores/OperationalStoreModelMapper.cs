@@ -16,17 +16,15 @@ namespace IdentityServer4.NHibernate.Mappings.Stores
             BeforeMapClass += BeforeMapOperationalStoreClass;
         }
 
-        private void BeforeMapOperationalStoreClass(IModelInspector modelInspector, Type type, IClassAttributesMapper classCustomizer)
+        private void BeforeMapOperationalStoreClass(IModelInspector modelInspector, Type type,
+            IClassAttributesMapper classCustomizer)
         {
-            TableDefinition tableDef;
-            if (type == typeof(PersistedGrant))
-            {
-                tableDef = GetTableDefinition(nameof(_options.PersistedGrants), _options);
-            }
-            else
-            {
-                tableDef = GetTableDefinition(type.Name, _options);
-            }
+            var tableDef =
+                GetTableDefinition(type == typeof(PersistedGrant)
+                        ? nameof(_options.PersistedGrants)
+                        : type.Name,
+                    _options);
+
             if (tableDef != null)
             {
                 classCustomizer.MapToTable(tableDef, _options);

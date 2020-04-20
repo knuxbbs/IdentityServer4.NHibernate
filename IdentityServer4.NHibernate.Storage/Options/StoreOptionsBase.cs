@@ -6,7 +6,7 @@
     public abstract class StoreOptionsBase
     {
         /// <summary>
-        /// Gets or sets the default schema for Configuration store's objects.
+        /// Gets or sets the default schema
         /// </summary>
         /// <value>
         /// The default schema.
