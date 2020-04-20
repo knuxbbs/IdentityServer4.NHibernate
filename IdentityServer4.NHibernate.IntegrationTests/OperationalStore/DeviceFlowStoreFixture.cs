@@ -69,7 +69,7 @@ namespace IdentityServer4.NHibernate.IntegrationTests.OperationalStore
 
                 foundDeviceFlowCodes.Should().NotBeNull();
                 foundDeviceFlowCodes?.DeviceCode.Should().Be(deviceCode);
-                foundDeviceFlowCodes?.ID.Should().Be(userCode);
+                foundDeviceFlowCodes?.Id.Should().Be(userCode);
             }
 
             CleanupTestData(testDb);
@@ -143,7 +143,7 @@ namespace IdentityServer4.NHibernate.IntegrationTests.OperationalStore
                     await session.SaveAsync(new DeviceFlowCodes()
                     {
                         DeviceCode = $"device_{Guid.NewGuid().ToString()}",
-                        ID = existingUserCode,
+                        Id = existingUserCode,
                         ClientId = deviceCodeData.ClientId,
                         SubjectId = deviceCodeData.Subject.FindFirst(JwtClaimTypes.Subject).Value,
                         CreationTime = deviceCodeData.CreationTime,
@@ -198,7 +198,7 @@ namespace IdentityServer4.NHibernate.IntegrationTests.OperationalStore
                     await session.SaveAsync(new DeviceFlowCodes()
                     {
                         DeviceCode = testDeviceCode,
-                        ID = testUserCode,
+                        Id = testUserCode,
                         ClientId = expectedDeviceCodeData.ClientId,
                         SubjectId = expectedDeviceCodeData.Subject.FindFirst(JwtClaimTypes.Subject).Value,
                         CreationTime = expectedDeviceCodeData.CreationTime,
@@ -270,7 +270,7 @@ namespace IdentityServer4.NHibernate.IntegrationTests.OperationalStore
                     await session.SaveAsync(new DeviceFlowCodes()
                     {
                         DeviceCode = testDeviceCode,
-                        ID = testUserCode,
+                        Id = testUserCode,
                         ClientId = expectedDeviceCodeData.ClientId,
                         SubjectId = expectedDeviceCodeData.Subject.FindFirst(JwtClaimTypes.Subject).Value,
                         CreationTime = expectedDeviceCodeData.CreationTime,
@@ -336,7 +336,7 @@ namespace IdentityServer4.NHibernate.IntegrationTests.OperationalStore
                     await session.SaveAsync(new DeviceFlowCodes
                     {
                         DeviceCode = testDeviceCode,
-                        ID = testUserCode,
+                        Id = testUserCode,
                         ClientId = unauthorizedDeviceCode.ClientId,
                         CreationTime = unauthorizedDeviceCode.CreationTime,
                         Expiration = unauthorizedDeviceCode.CreationTime.AddSeconds(unauthorizedDeviceCode.Lifetime),
@@ -414,7 +414,7 @@ namespace IdentityServer4.NHibernate.IntegrationTests.OperationalStore
                     await session.SaveAsync(new DeviceFlowCodes()
                     {
                         DeviceCode = testDeviceCode,
-                        ID = testUserCode,
+                        Id = testUserCode,
                         ClientId = existingDeviceCode.ClientId,
                         CreationTime = existingDeviceCode.CreationTime,
                         Expiration = existingDeviceCode.CreationTime.AddSeconds(existingDeviceCode.Lifetime),

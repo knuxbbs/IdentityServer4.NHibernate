@@ -9,7 +9,7 @@
         /// <summary>
         /// Returns the value entity's unique identifier.
         /// </summary>
-        TId ID { get; }
+        TId Id { get; }
 
         /// <summary>
         /// Returns true if the entity is transient (not yet persisted in the database).

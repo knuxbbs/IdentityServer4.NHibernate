@@ -54,7 +54,7 @@ namespace IdentityServer4.NHibernate.Stores
         public async Task<PersistedGrant> GetAsync(string key)
         {
             var persistedGrant = await _session.QueryOver<Entities.PersistedGrant>()
-                .Where(g => g.ID == key)
+                .Where(g => g.Id == key)
                 .SingleOrDefaultAsync();
 
             var model = persistedGrant?.ToModel();

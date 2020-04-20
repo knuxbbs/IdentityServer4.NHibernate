@@ -7,7 +7,7 @@ namespace IdentityServer4.NHibernate.Mappings.Stores.Configuration
     {
         public ClientSecretMap()
         {
-            Id(p => p.ID);
+            Id(p => p.Id);
 
             Property(p => p.Description, map => map.Length(2000));
 

@@ -142,8 +142,8 @@ namespace IdentityServer4.NHibernate.TokenCleanup
                             {
                                 var expiredTokensQuery = session.QueryOver<PersistedGrant>()
                                     .Where(g => g.CreationTime < DateTimeOffset.UtcNow)
-                                    .OrderBy(g => g.ID).Asc
-                                    .Select(g => g.ID)
+                                    .OrderBy(g => g.Id).Asc
+                                    .Select(g => g.Id)
                                     .Take(_options.TokenCleanupBatchSize);
 
                                 var expiredTokensIDs = (await expiredTokensQuery.ListAsync()).ToArray();

@@ -8,7 +8,7 @@ namespace IdentityServer4.NHibernate.Mappings.Stores.Operational
     {
         public PersistedGrantMap()
         {
-            Id(p => p.ID, map =>
+            Id(p => p.Id, map =>
             {
                 map.Column("Key");
                 map.Generator(Generators.Assigned);

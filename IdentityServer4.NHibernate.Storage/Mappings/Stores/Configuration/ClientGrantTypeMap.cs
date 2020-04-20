@@ -7,7 +7,7 @@ namespace IdentityServer4.NHibernate.Mappings.Stores.Configuration
     {
         public ClientGrantTypeMap()
         {
-            Id(p => p.ID);
+            Id(p => p.Id);
 
             Property(p => p.GrantType, map => 
             {

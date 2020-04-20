@@ -7,7 +7,7 @@ namespace IdentityServer4.NHibernate.Mappings.Stores.Configuration
     {
         public ClientClaimMap()
         {
-            Id(p => p.ID);
+            Id(p => p.Id);
 
             Property(p => p.Type, map => 
             {

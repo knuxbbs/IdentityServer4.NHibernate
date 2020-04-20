@@ -163,7 +163,7 @@ namespace IdentityServer4.NHibernate.Stores
             return new DeviceFlowCodes
             {
                 DeviceCode = deviceCode,
-                ID = userCode,
+                Id = userCode,
                 ClientId = model.ClientId,
                 SubjectId = model.Subject?.FindFirst(JwtClaimTypes.Subject).Value,
                 CreationTime = model.CreationTime,

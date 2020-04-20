@@ -8,7 +8,7 @@ namespace IdentityServer4.NHibernate.Mappings.Stores.Configuration
     {
         public IdentityResourceMap()
         {
-            Id(p => p.ID);
+            Id(p => p.Id);
 
             Property(p => p.Name, map => 
             {

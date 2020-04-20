@@ -11,7 +11,7 @@ namespace IdentityServer4.NHibernate.Mappings.Entities
         {
             CreateMap<NHibernate.Entities.PersistedGrant, Models.PersistedGrant>(MemberList.Destination)
                 .ReverseMap()
-                    .ForMember(dest => dest.ID, map => map.MapFrom(src => src.Key));
+                    .ForMember(dest => dest.Id, map => map.MapFrom(src => src.Key));
         }
     }
 }

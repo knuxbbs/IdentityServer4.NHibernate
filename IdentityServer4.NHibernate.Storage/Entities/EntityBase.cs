@@ -13,14 +13,14 @@
         /// <summary>
         /// Unique identifier.
         /// </summary>
-        public virtual TId ID { get; protected internal set; }
+        public virtual TId Id { get; protected internal set; }
 
         /// <summary>
         /// Returns true if the entity is transient (not yet persisted in the database).
         /// </summary>
         public virtual bool IsTransient()
         {
-            return ID == null || ID.Equals(default(TId));
+            return Id == null || Id.Equals(default(TId));
         }
 
         #pragma warning disable 1591
@@ -39,7 +39,7 @@
                 return ReferenceEquals(this, other);
             }
 
-            return other.ID.Equals(ID);
+            return other.Id.Equals(Id);
         }
 
         public override int GetHashCode()
@@ -55,7 +55,7 @@
             }
             else
             {
-                cachedHashCode = (HashMultiplier * GetType().GetHashCode()) ^ ID.GetHashCode();
+                cachedHashCode = (HashMultiplier * GetType().GetHashCode()) ^ Id.GetHashCode();
             }
 
             return cachedHashCode.Value;
