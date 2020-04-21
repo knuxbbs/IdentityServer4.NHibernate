@@ -27,7 +27,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="configurationStoreOptionsAction">The configurations store options action.</param>
         /// <param name="operationalStoreOptionsAction">The operational store options action.</param>
         /// <param name="createDatabaseSchema">If true, drops and creates the database schema (only the schema, NOT the database). Default is false.</param>
-        public static IIdentityServerBuilder AddNHibernateStores(
+        public static IIdentityServerBuilder AddHibernateStores(
             this IIdentityServerBuilder builder,
             NHibernate.Cfg.Configuration databaseConfiguration,
             Action<ConfigurationStoreOptions> configurationStoreOptionsAction,
@@ -76,14 +76,14 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="configurationStoreOptionsAction">The configurations store options action.</param>
         /// <param name="operationalStoreOptionsAction">The operational store options action.</param>
         /// <param name="createDatabaseSchema">If true, drops and creates the database schema (only the schema, NOT the database). Default is false.</param>
-        public static IIdentityServerBuilder AddNHibernateStores(
+        public static IIdentityServerBuilder AddHibernateStores(
             this IIdentityServerBuilder builder,
             Func<NHibernate.Cfg.Configuration> databaseConfigurationFunction,
             Action<ConfigurationStoreOptions> configurationStoreOptionsAction,
             Action<OperationalStoreOptions> operationalStoreOptionsAction,
             bool createDatabaseSchema = false)
         {
-            return builder.AddNHibernateStores(
+            return builder.AddHibernateStores(
                 databaseConfigurationFunction(),
                 configurationStoreOptionsAction,
                 operationalStoreOptionsAction,
