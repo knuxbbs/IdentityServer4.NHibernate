@@ -6,6 +6,7 @@ using IdentityServer4.NHibernate.Stores;
 using IdentityServer4.NHibernate.TokenCleanup;
 using IdentityServer4.Services;
 using IdentityServer4.Stores;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
@@ -89,6 +90,37 @@ namespace Microsoft.Extensions.DependencyInjection
                 operationalStoreOptionsAction,
                 createDatabaseSchema);
         }
+        
+        public static IIdentityServerBuilder AddHibernateConfigurationStore(this IIdentityServerBuilder builder,
+            Action<ConfigurationStoreOptions> storeOptionsAction = null)
+        {
+            var configStoreOptions = new ConfigurationStoreOptions();
+            builder.Services.TryAddSingleton(configStoreOptions);
+            storeOptionsAction?.Invoke(configStoreOptions);
+            
+            if (configStoreOptions.EnableConfigurationStoreCache)
+            {
+                builder.AddCachedConfigurationStore();
+            }
+            else
+            {
+                builder.AddConfigurationStore();
+            }
+
+            return builder;
+        }
+        
+        public static IIdentityServerBuilder AddHibernateOperationalStore(this IIdentityServerBuilder builder,
+            Action<OperationalStoreOptions> storeOptionsAction = null)
+        {
+            var operationalStoreOptions = new OperationalStoreOptions();
+            builder.Services.TryAddSingleton(operationalStoreOptions);
+            storeOptionsAction?.Invoke(operationalStoreOptions);
+
+            builder.AddOperationalStore();
+
+            return builder;
+        }
 
         /// <summary>
         /// Adds an implementation of the IOperationalStoreNotification to IdentityServer.
@@ -96,8 +128,8 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <typeparam name="T">Concrete implementation of the <see cref="IOperationalStoreNotification"/> interface.</typeparam>
         /// <param name="builder">The builder.</param>
         public static IIdentityServerBuilder AddOperationalStoreNotification<T>(
-           this IIdentityServerBuilder builder)
-           where T : class, IOperationalStoreNotification
+            this IIdentityServerBuilder builder)
+            where T : class, IOperationalStoreNotification
         {
             builder.Services.AddTransient<IOperationalStoreNotification, T>();
 
@@ -122,13 +154,15 @@ namespace Microsoft.Extensions.DependencyInjection
             databaseConfiguration.AddOperationalStoreMappings(operationalStoreOptions);
 
             // Registers NHibernate components
-            builder.Services.AddSingleton(databaseConfiguration.BuildSessionFactory());
-            builder.Services.AddScoped(provider =>
+            builder.Services.TryAddSingleton(databaseConfiguration.BuildSessionFactory());
+
+            builder.Services.TryAddScoped(provider =>
             {
                 var factory = provider.GetService<ISessionFactory>();
                 return factory.OpenSession();
             });
-            builder.Services.AddScoped(provider =>
+
+            builder.Services.TryAddScoped(provider =>
             {
                 var factory = provider.GetService<ISessionFactory>();
                 return factory.OpenStatelessSession();
